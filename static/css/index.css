@@ -1,0 +1,44 @@
+body {height: auto;
+width: 1400px;
+padding: 0;
+margin: 0 20px 0 50px;
+z-index: 1;
+font-family: 'Hind Siliguri', sans-serif;
+}
+
+h1 {margin: 10px 150px 0 150px;
+    font-family: 'Hind Siliguri', sans-serif;
+    text-align: center;}
+
+h2 {text-align: center;
+    margin-bottom: 5px;
+font-family: 'Hind Siliguri', sans-serif;}
+
+h3 {text-align: center;
+    margin-bottom: 5px;
+font-family: 'Hind Siliguri', sans-serif;}
+
+li {width: 200px;
+height: 100px;
+position: relative;
+float: left;
+margin: 20px 100px 20px 100px;
+border: 3px solid;
+border-color: rgba(103, 187, 240, 1);
+border-radius: 20px;
+list-style-type: none;
+text-align: center;
+vertical-align: middle;}
+
+#moscow_flats, #moscow_aparts {background-image: url(/static/css/moscow.jpg);}
+#newmos_flats, #newmos_aparts {background-image: url(/static/css/new_moscow.jpg);}
+#spb_flats, #spb_aparts {background-image: url(/static/css/spb.jpg);}
+#mosregion_flats, #mosregion_aparts {background-image: url(/static/css/moscow_dist.jpg);}
+
+a:visited {color:black;}
+
+.error {margin: 200px 150px 0 150px;
+    font-family: 'Hind Siliguri', sans-serif;}
+
+#error {text-align: center;
+font-size: 20pt;}

@@ -1,0 +1,115 @@
+body {height: auto;
+width: 1400px;
+padding: 0;
+margin: 0 20px 0 40px;
+z-index: 1;
+font-family: 'Hind Siliguri', sans-serif;}
+
+#map {
+/* configure the size of the map */
+width: 700px;
+height: 440px;
+margin: 0 10px 0 15px;}
+
+.map {float: right;
+border: 3px solid;
+margin: 0 20px 0 20px;
+border-color: rgba(103, 187, 240, 1);
+border-radius: 20px;
+width: 730px;
+height: 550px;}
+
+.filter {
+float: left;
+border: 3px solid;
+margin: 0 20px 0 20px;
+border-color: rgba(103, 187, 240, 1);
+border-radius: 20px;
+width: 210px;
+height: 1100px;}
+
+header {margin: 20px;
+border: 3px solid;
+border-color: rgba(103, 187, 240, 1);
+border-radius: 20px;
+height: 300px;}
+
+.list_project {border: 3px solid;
+margin: 0 20px 0 247px;
+width: 380px;
+height: 1100px;
+border-color: rgba(103, 187, 240, 1);
+border-radius: 20px;}
+
+.main_part {
+z-index: 2;
+clear:both}
+
+.volume_info {margin: 10px 50px 0 150px;
+float: left;}
+
+.flat_info {float: left;
+margin: 10px 150px 20px; 20px;}
+
+
+h1 {margin: 10px 150px 0 150px;
+    font-family: 'Hind Siliguri', sans-serif;}
+
+h2 {text-align: center;
+    margin-bottom: 5px;
+font-family: 'Hind Siliguri', sans-serif;}
+
+h3 {text-align: center;
+    margin-bottom: 5px;
+font-family: 'Hind Siliguri', sans-serif;}
+
+.name_project {
+    border: 2px solid;
+    border-color: rgba(103, 187, 240, 1);
+    width: 300px;
+    height: 500px;
+    overflow: auto;
+    margin: 10px 10px 10px 50px;
+    border-radius: 20px;
+    background-color: rgba(209, 207, 207, 0.2);}
+
+#link {padding: 2px;}
+
+.btn {margin: 0 0 0 40px;
+width: 140px;}
+
+li {list-style-type: none;}
+
+ul {margin: 5px 0px 5px -25px;}
+
+select {margin: 0 0 0 40px;
+width: 100px;}
+
+.deal {border: 2px solid;
+        border-color: rgba(103, 187, 240, 1);
+        border-radius: 20px;
+        width:180px;
+        height: 120px;
+        margin:10px;
+        overflow: auto;}
+
+.finish {border: 2px solid;
+        border-color: rgba(103, 187, 240, 1);
+        border-radius: 20px;
+        width:180px;
+        height: 120px;
+        margin:10px;
+        overflow: auto;}
+
+.dist {border: 2px solid;
+        border-color: rgba(103, 187, 240, 1);
+        border-radius: 20px;
+        width:180px;
+        height: 200px;
+        margin:10px;
+        overflow: auto;}
+
+.chart_main {width: 740px;
+        height: 450px;
+        margin: 10px;
+        float: right;}
