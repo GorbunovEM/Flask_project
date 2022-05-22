@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+ 
+  
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type=text/javascript> $(function() { $("#mybutton").click(function (event) { $.getJSON('/SomeFunction', { },function(data) { }); return false; }); });</script>
+        <link rel="stylesheet" type="text/css" href="/static/css/chart.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Merriweather:wght@400;700&family=Work+Sans&display=swap" rel="stylesheet">
+    </head>
+  
+    <body>
+    <header>
+       <h1>Основные параметры ЖК</h1>
+       <div>
+           <table class="flat_info">
+                <tr><th>Средняя цена за квартиры:</th><th><span> {{all_flat}} </span></th></tr>
+                <tr><td>Цена за 1 ком:</td><td><span> {{oneflat}} </span></td></tr>
+                <tr><td>Цена за 2 ком:</td><td><span> {{twoflat}} </span></td></tr>
+                <tr><td>Цена за 3 ком:</td><td><span> {{threeflat}} </span></td></tr>
+                <tr><td>Цена за больше 4 ком:</td><td><span> {{fourflat}} </span></td></tr>
+                <tr><td>Цена за ст:</td><td><span> {{stflat}} </span></td></tr>
+                <tr><td><form method="post" name="filter" target=""><input type = "submit" value = "Получить аналоги" style="height:30px;width:150px;"><input type="checkbox" value="get" checked="checked" style="display:none"></form></td></tr>
+           </table>
+           <table class="volume_info">
+                <tr><th>Информация о продажах</th><th></th></tr>
+                <tr><td>Пощадь проданных квартир, кв. м:</td><td><span> {{area_flat}} </span></td></tr>
+                <tr><td>Темп продаж, кв.м/кв.</td><td><span> {{temp_flat}} </span></td></tr>
+                <tr><td>Кол-во, ед.</td><td><span> {{qunt_flat}} </span></td></tr>
+          </table>
+       </div>
+   </header>
+    <h3>Проданные площади, кв. м</h3>
+<!-- bar chart canvas element -->
+        <canvas id="volume" width="1300" height="400"></canvas>
+        <p id="caption1"></p>
+        <script>
+      // Global parameters:
+      // do not resize the chart canvas when its container does (keep at 600x400px)
+        Chart.defaults.global.responsive = false;
+
+      // define the chart data
+          var chartData1 = {
+            labels : [{% for item in labels %}
+                       "{{item}}",
+                      {% endfor %}],
+            datasets : [{
+                label: 'Площадь',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data : [{% for item in values1 %}
+                          {{item}},
+                        {% endfor %}],
+                spanGaps: false
+            }]
+          }
+          // get chart canvas
+          var ctx1 = document.getElementById("volume").getContext("2d");
+          // create the chart using the chart canvas
+          var myChart = new Chart(ctx1, {
+            type: 'bar',
+            data: chartData1,
+          });
+        </script>
+    <h3>Средняя цена, руб./кв.м</h3>
+    <canvas id="price" width="1300" height="400"></canvas>
+        <p id="caption2"></p>
+        <script>
+      // Global parameters:
+      // do not resize the chart canvas when its container does (keep at 600x400px)
+        Chart.defaults.global.responsive = false;
+
+      // define the chart data
+          var chartData2 = {
+            labels : [{% for item in labels %}
+                       "{{item}}",
+                      {% endfor %}],
+            datasets : [{
+                label: 'Цена',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data : [{% for item in values2 %}
+                          {{item}},
+                        {% endfor %}],
+                spanGaps: false
+            }]
+          }
+          // get chart canvas
+          var ctx2 = document.getElementById("price").getContext("2d");
+          // create the chart using the chart canvas
+          var myChart = new Chart(ctx2, {
+            type: 'line',
+            data: chartData2,
+          });
+        </script>
+    </body>
+</html>

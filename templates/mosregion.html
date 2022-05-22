@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookiesjs/1.4.2/cookies.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="/static/leaflet/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&family=Merriweather:wght@400;700&family=Work+Sans&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+   crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+  </head>
+  
+    <body>
+     <header> 
+       <h1>Основные параметры ЖК</h1>
+       <div>
+           <table class="flat_info"> 
+                <tr><th>Средняя цена за квартиры:</th><th><span> {{all_flat}} </span></th></tr>
+                <tr><td>Цена за 1 ком:</td><td><span> {{oneflat}} </span></td></tr>
+                <tr><td>Цена за 2 ком:</td><td><span> {{twoflat}} </span></td></tr>
+                <tr><td>Цена за 3 ком:</td><td><span> {{threeflat}} </span></td></tr>
+                <tr><td>Цена за больше 4 ком:</td><td><span> {{fourflat}} </span></td></tr>
+                <tr><td>Цена за ст:</td><td><span> {{stflat}} </span></td></tr>
+          </table>
+          <table class="volume_info">
+                <tr><th>Информация о продажах</th><th></th></tr>
+                <tr><td>Пощадь проданных квартир, кв. м:</td><td><span> {{area_flat}} </span></td></tr>
+                <tr><td>Темп продаж, кв.м/кв.</td><td><span> {{temp_flat}} </span></td></tr>
+                <tr><td>Кол-во, ед.</td><td><span> {{qunt_flat}} </span></td></tr>
+          </table>     
+       </div>
+   </header> 
+   
+    <div class="main_part"> 
+    <div class="map">
+        <h2>Карта ЖК</h2>
+                <div id="map"></div>
+    </div>
+       
+    <div class="filter">
+        <h2>Фильтры</h2>
+        <form method="post" name="filter" target="" id="checkbox-container">
+            <input type="submit" value="Отфильтровать" id="btn" class="btn">
+            <input type="submit" value="Сбросить фильтры" id="btn2" class="btn">
+            <h3>Район</h3>
+            <div class="dist" id="dist">
+                <ul id="chb1">
+                    <li><input type="checkbox" name="dist" value="Богородский г.о." id="ch1"> Богородский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Балашиха" id="ch2"> г.о. Балашиха</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Бронницы" id="ch3"> г.о. Бронницы</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Дзержински" id="ch4"> г.о. Дзержинский</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Долгопрудный" id="ch5"> г.о. Долгопрудный</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Домодедово" id="ch6"> г.о. Домодедово</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Дубна" id="ch7"> г.о. Дубна</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Егорьевск" id="ch8"> г.о. Егорьевск</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Жуковский" id="ch9"> г.о. Жуковский</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Ивантеевка" id="ch10"> г.о. Ивантеевка</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Истра" id="ch11"> г.о. Истра</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Клин" id="ch12"> г.о. Клин</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Коломна" id="ch13"> г.о. Коломна</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Королёв" id="ch14"> г.о. Королёв</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Котельники" id="ch15"> г.о. Котельники</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Красногорск" id="ch16"> г.о. Красногорск</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Лобня" id="ch17"> г.о. Лобня</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Лосино-Петровский" id="ch18"> г.о. Лосино-Петровский</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Лыткарино" id="ch19"> г.о. Лыткарино</li>
+                    <li><input type="checkbox" name="dist" value="Талдомский г.о." id="ch20"> Талдомский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Люберцы" id="ch21"> г.о. Люберцы</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Мытищи" id="ch22"> г.о. Мытищи</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Подольск" id="ch23"> г.о. Подольск</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Пущино" id="ch24"> г.о. Пущино</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Реутов" id="ch25"> г.о. Реутов</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Серпухов" id="ch26"> г.о. Серпухов</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Солнечногорск" id="ch27"> г.о. Солнечногорск</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Ступино" id="ch28"> г.о. Ступино</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Фрязино" id="ch29"> г.о. Фрязино</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Химки" id="ch30"> г.о. Химки</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Чехов" id="ch31"> г.о. Чехов</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Шатура" id="ch32"> г.о. Шатура</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Щёлково" id="ch33"> г.о. Щёлково</li>
+                    <li><input type="checkbox" name="dist" value="г.о. Электросталь" id="ch34"> г.о. Электросталь</li>
+                    <li><input type="checkbox" name="dist" value="Дмитровский г.о." id="ch35"> Дмитровский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Коломенский г.о." id="ch36"> Коломенский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Ленинский г.о." id="ch37"> Ленинский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Можайский г.о." id="ch38"> Можайский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Наро-Фоминский г.о." id="ch39"> Наро-Фоминский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Одинцовский г.о." id="ch40"> Одинцовский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Орехово-Зуевский г.о." id="ch41"> Орехово-Зуевский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Пушкинский г.о." id="ch42"> Пушкинский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Раменский г.о." id="ch43"> Раменский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Рузский г.о." id="ch44"> Рузский г.о.</li>
+                    <li><input type="checkbox" name="dist" value="Сергиево-Посадский г.о." id="ch45"> Сергиево-Посадский г.о.</li>
+                </ul>
+            </div>
+            <h3>Класс ЖК</h3>
+               <ul id="chb2">
+                    <li><input type="checkbox" name="class" value="Эконом" id="ch50"> Эконом</li>
+                    <li><input type="checkbox" name="class" value="Комфорт" id="ch51"> Комфорт</li>
+                    <li><input type="checkbox" name="class" value="Бизнес-" id="ch52"> Бизнес-</li>
+                    <li><input type="checkbox" name="class" value="Бизнес" id="ch53"> Бизнес</li>
+                    <li><input type="checkbox" name="class" value="Бизнес+" id="ch54"> Бизнес+</li>
+                    <li><input type="checkbox" name="class" value="Премиум" id="ch55"> Премиум</li>
+                    <li><input type="checkbox" name="class" value="Элит" id="ch56"> Элитный</li>
+                </ul> 
+            <div>
+            <h3>Период сделки</h3>
+                <div class="deal">
+                    <ul id="chb3">
+                        <li><input type="checkbox" name="deal" value="2022 4кв." id="ch57">4 кв. 2022</li>
+                        <li><input type="checkbox" name="deal" value="2022 3кв." id="ch58">3 кв. 2022</li>
+                        <li><input type="checkbox" name="deal" value="2022 2кв." id="ch59">2 кв. 2022</li>
+                        <li><input type="checkbox" name="deal" value="2022 1кв." id="ch60">1 кв. 2022</li>
+                        <li><input type="checkbox" name="deal" value="2021 4кв." id="ch61">4 кв. 2021</li>
+                        <li><input type="checkbox" name="deal" value="2021 3кв." id="ch62">3 кв. 2021</li>
+                        <li><input type="checkbox" name="deal" value="2021 2кв." id="ch63">2 кв. 2021</li>
+                        <li><input type="checkbox" name="deal" value="2021 1кв." id="ch64">1 кв. 2021</li>
+                        <li><input type="checkbox" name="deal" value="2020 4кв." id="ch65">4 кв. 2020</li>
+                        <li><input type="checkbox" name="deal" value="2020 3кв." id="ch66">3 кв. 2020</li>
+                        <li><input type="checkbox" name="deal" value="2020 2кв." id="ch67">2 кв. 2020</li>
+                        <li><input type="checkbox" name="deal" value="2020 1кв." id="ch68">1 кв. 2020</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <h3>Период сдачи</h3>
+                <div class="finish">
+                    <ul>
+                    {% for fn in key_finish %}
+                        <li id="finish"><input type="checkbox" name="finish" value="{{ fn }}">{{ fn }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>            
+        </form>
+    </div>    
+        <div class="chart_main" id="chart_main">
+     <h3>График</h3>
+<!-- bar chart canvas element -->
+        <canvas id="volume" width="750" height="450"></canvas>
+        <p id="caption1"></p>
+                <script>
+      // Global parameters:
+      // do not resize the chart canvas when its container does (keep at 600x400px)
+        Chart.defaults.global.responsive = false;
+
+      // define the chart data
+          var chartData1 = {
+            labels : ["2020 4кв." ,"2021 1кв.", "2021 2кв.", "2021 3кв.", "2021 4кв."],
+            datasets : [{
+                label: 'Стоимость, руб/кв. м',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(103, 187, 240, 0.4)",
+                borderColor: "rgba(103, 187, 240, 1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(103, 187, 240, 1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(103, 187, 240, 1)",
+                pointHoverBorderColor: "rgba(103, 187, 240, 1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data : [{% for item1 in values1 %}
+                          {{item1}},
+                        {% endfor %}],
+                spanGaps: false,
+                yAxisID: "y-axis-density"
+            }, {
+                label: 'Реализованная площадь, кв. м',
+                fill: true,
+                lineTension: 0.1,
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(103, 187, 240, 1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(103, 187, 240, 1)",
+                pointHoverBorderColor: "rgba(103, 187, 240, 1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 1,
+                pointHitRadius: 10,
+                data : [{% for item2 in values2 %}
+                          {{item2}},
+                        {% endfor %}],
+                spanGaps: false,
+                yAxisID: "y-axis-gravity"
+                }]
+          }
+          var chartOptions = {
+            scales: {
+                yAxes: [{
+                    id: "y-axis-density"
+                     }, {
+                    id: "y-axis-gravity"
+                    }]
+                    }
+                };
+
+          // get chart canvas
+          var ctx1 = document.getElementById("volume").getContext("2d");
+          // create the chart using the chart canvas
+          var myChart = new Chart(ctx1, {
+            type: 'line',
+            data: chartData1,
+            options: chartOptions
+          });
+        </script>
+         </div>
+    <div class="list_project">
+            <h2>Наименование ЖК</h2>
+                <div class = name_project >
+                    <ul id="link_ul">
+                        {% for key, value in key_class.items() %}
+                        <li id="link"><a href = "{{ value[0] }}" target="_blank">{{ key }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>            
+    </div>
+    </div> 
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+  <script src="/static/js/scripts.js"></script>
+    <script type="text/javascript">
+var map = L.map('map', {center: [55.75167, 37.61778], zoom: 8});
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'}).addTo(map);
+L.control.scale().addTo(map);
+var locations = [{% for key, value in key_class.items() %}
+["{{key}}", {{value[1]}}, {{value[2]}}],
+{% endfor %}];
+document.addEventListener('DOMContentLoaded', (event) => {
+for (var i = 0; i < locations.length; i++) {marker = new L.marker([locations[i][1], locations[i][2]]).bindPopup(locations[i][0]).addTo(map);}});
+    </script>
+  </body>
+</html>
