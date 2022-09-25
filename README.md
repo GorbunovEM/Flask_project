@@ -1,4 +1,4 @@
-# Flask_project
+# Flask_project (http://151.248.114.190:3248/newmos_aparts)
 Analysis of prices and sales of residential complexes. For testing open only section "new moscow apartment".
 
 Project consist of 6 file python file, 2 folder and 2 csv file.
